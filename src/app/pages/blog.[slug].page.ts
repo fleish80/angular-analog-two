@@ -4,6 +4,7 @@ import { map } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MarkdownComponent, injectContent } from '@analogjs/content';
 import { Post } from './post';
+import { injectActivatedRoute } from '@analogjs/router';
 
 @Component({
   selector: 'app-blog-post',
@@ -18,6 +19,7 @@ import { Post } from './post';
 })
 export default class BlogPostComponent {
     post = toSignal(injectContent<Post>());
-    #route = inject(ActivatedRoute);
+    // #route = inject(ActivatedRoute);
+    #route = injectActivatedRoute();
     slug = toSignal(this.#route.paramMap.pipe(map(params => params.get('slug'))));
 }
