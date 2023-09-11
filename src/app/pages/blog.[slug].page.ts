@@ -11,12 +11,13 @@ import { Post } from './post';
   imports: [MarkdownComponent],
   template: `
     <h1>First blog post</h1>
-    {{slug()}}
+    <p>{{slug()}}</p>
+    <p>{{post()?.content}}</p>
   `,
   styles: [],
 })
 export default class BlogPostComponent {
-    posts$ = injectContent<Post>()
+    post = toSignal(injectContent<Post>());
     #route = inject(ActivatedRoute);
     slug = toSignal(this.#route.paramMap.pipe(map(params => params.get('slug'))));
 }
