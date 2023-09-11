@@ -19,7 +19,6 @@ import { injectActivatedRoute } from '@analogjs/router';
 })
 export default class BlogPostComponent {
     post = toSignal(injectContent<Post>());
-    // #route = inject(ActivatedRoute);
-    #route = injectActivatedRoute();
+    #route = injectActivatedRoute(); // same as inject(ActivatedRoute);
     slug = toSignal(this.#route.paramMap.pipe(map(params => params.get('slug'))));
 }
